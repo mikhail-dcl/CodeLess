@@ -1,0 +1,13 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithFiveParameters : IMethodWithFiveParameters
+    {
+        public bool Check(int a, string b, double c, object d, long e)
+        {
+            return a > 0 && !string.IsNullOrEmpty(b);
+        }
+    }
+}

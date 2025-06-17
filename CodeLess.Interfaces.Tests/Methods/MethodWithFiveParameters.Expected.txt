@@ -1,0 +1,10 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IMethodWithFiveParameters
+    {
+        bool Check(int a, string b, double c, object d, long e);
+    }
+}

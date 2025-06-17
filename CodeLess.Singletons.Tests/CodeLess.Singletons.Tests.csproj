@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsTestProject>true</IsTestProject>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>false</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>default</LangVersion>
+        <AssemblyName>CodeLess.Singletons.Tests</AssemblyName>
+        <RootNamespace>CodeLess.Singletons.Tests</RootNamespace>
+        <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CodeLess.Singletons.Tests.Type1\CodeLess.Singletons.Tests.Type1.csproj" />
+        <ProjectReference Include="..\CodeLess.Singletons.Tests.Type2\CodeLess.Singletons.Tests.Type2.csproj" />
+        <ProjectReference Include="..\CodeLess.Singletons\CodeLess.Singletons.csproj" ReferenceOutputAssembly="true" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+      <PackageReference Include="NUnit" Version="4.3.2" />
+    </ItemGroup>
+
+</Project>

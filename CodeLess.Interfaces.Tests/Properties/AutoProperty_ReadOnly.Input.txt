@@ -1,0 +1,9 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class AutoProperty_ReadOnly : IAutoProperty_ReadOnly
+    {
+        public int Age { get; }
+    }
+}

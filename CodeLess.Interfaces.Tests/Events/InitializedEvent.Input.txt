@@ -1,0 +1,10 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class InitializedEvent : IInitializedEvent
+    {
+        public event Action OnInit = delegate { };
+    }
+}

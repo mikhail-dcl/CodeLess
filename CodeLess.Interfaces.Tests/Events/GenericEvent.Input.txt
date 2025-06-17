@@ -1,0 +1,10 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class GenericEvent<T> : IGenericEvent<T>
+    {
+        public event EventHandler<T> OnGeneric;
+    }
+}

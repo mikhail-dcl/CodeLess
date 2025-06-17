@@ -1,0 +1,14 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithRefParameter : IMethodWithRefParameter
+    {
+        public void Swap(ref int a, ref int b)
+        {
+            int t = a;
+            a = b;
+            b = t;
+        }
+    }
+}

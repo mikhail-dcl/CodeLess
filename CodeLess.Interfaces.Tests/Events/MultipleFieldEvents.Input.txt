@@ -1,0 +1,10 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MultipleFieldEvents : IMultipleFieldEvents
+    {
+        public event Action A, B, C;
+    }
+}

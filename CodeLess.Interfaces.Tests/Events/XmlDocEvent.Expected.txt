@@ -1,0 +1,11 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    /// <summary>Raised when data changes</summary>
+    public partial interface IXmlDocEvent
+    {
+        event EventHandler DataChanged;
+    }
+}

@@ -1,0 +1,10 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public abstract class AbstractClassWithTwoAbstractMethods : IAbstractClassWithTwoAbstractMethods
+    {
+        public abstract void Foo();
+        public abstract int Bar(string input);
+    }
+}

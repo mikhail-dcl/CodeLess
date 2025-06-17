@@ -1,0 +1,11 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IAttributeEvent
+    {
+        [Obsolete]
+        event Action OldEvent;
+    }
+}

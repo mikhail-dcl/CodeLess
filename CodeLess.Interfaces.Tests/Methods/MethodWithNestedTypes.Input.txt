@@ -1,0 +1,40 @@
+using System.Threading.Tasks;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithNestedTypes : IMethodWithNestedTypes
+    {
+        public class NestedClass
+        {
+            public int Value { get; set; }
+        }
+        
+        public struct NestedStruct
+        {
+            public string Value { get; set; }
+        }
+        
+        public enum NestedEnum
+        {
+            Value1,
+            Value2
+        }
+        
+        public void GetEnum(out NestedEnum nestedEnum)
+        {
+            nestedEnum = NestedEnum.Value1;
+        }
+        
+        public async Task<NestedClass> GetNestedClassAsync()
+        {
+            await Task.Delay(1);
+            return new NestedClass { Value = 42 };
+        }
+        
+        public NestedStruct GetNestedStruct(NestedClass nestedClass, int ttt, NestedClass nestedClass2)        
+        {
+            return new NestedStruct { Value = nestedClass.Value.ToString() + nestedClass2.Value.ToString() + ttt };
+        }       
+    }
+}

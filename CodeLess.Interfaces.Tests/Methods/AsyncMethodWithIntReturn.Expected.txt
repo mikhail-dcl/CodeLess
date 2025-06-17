@@ -1,0 +1,10 @@
+#nullable enable
+using System.Threading.Tasks;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IAsyncMethodWithIntReturn
+    {
+        Task<int> ComputeAsync();
+    }
+}

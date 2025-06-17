@@ -1,0 +1,9 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class AutoProperty_ReadWrite : IAutoProperty_ReadWrite
+    {
+        public string Name { get; set; }
+    }
+}

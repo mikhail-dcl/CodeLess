@@ -1,0 +1,14 @@
+using System.Threading.Tasks;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class AsyncMethodWithIntReturn : IAsyncMethodWithIntReturn
+    {
+        public async Task<int> ComputeAsync()
+        {
+            await Task.Delay(1);
+            return 42;
+        }
+    }
+}

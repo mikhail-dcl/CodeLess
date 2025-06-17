@@ -1,0 +1,8 @@
+#nullable enable
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IIndexedProperty
+    {
+        int this[int index] { get; set; }
+    }
+}

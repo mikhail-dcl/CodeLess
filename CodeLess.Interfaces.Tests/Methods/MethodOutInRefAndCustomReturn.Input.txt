@@ -1,0 +1,14 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodOutInRefAndCustomReturn : IMethodOutInRefAndCustomReturn
+    {
+        public (string, int) Transform(in string s, ref int x, out bool success)
+        {
+            success = true;
+            return (s, x);
+        }
+    }
+}

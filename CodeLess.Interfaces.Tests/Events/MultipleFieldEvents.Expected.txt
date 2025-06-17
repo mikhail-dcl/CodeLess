@@ -1,0 +1,10 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IMultipleFieldEvents
+    {
+        event Action A, B, C;
+    }
+}

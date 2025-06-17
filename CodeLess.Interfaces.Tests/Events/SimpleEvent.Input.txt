@@ -1,0 +1,10 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class SimpleEvent : ISimpleEvent
+    {
+        public event Action OnSomething;
+    }
+}

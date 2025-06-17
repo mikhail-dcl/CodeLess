@@ -1,0 +1,11 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class PropertyWithAttributes : IPropertyWithAttributes
+    {
+        [Obsolete]
+        public int Old { get; set; }
+    }
+}

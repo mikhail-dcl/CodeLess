@@ -1,0 +1,9 @@
+#nullable enable
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IAbstractClassWithTwoAbstractMethods
+    {
+        void Foo();
+        int Bar(string input);
+    }
+}

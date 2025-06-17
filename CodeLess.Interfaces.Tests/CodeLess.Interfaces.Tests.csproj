@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsTestProject>true</IsTestProject>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>default</LangVersion>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CodeLess.Interfaces\CodeLess.Interfaces.csproj" OutputItemType="Analyzer"/>
+        <ProjectReference Include="..\CodeLess.Common\CodeLess.Common.csproj" OutputItemType="Analyzer"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.NUnit" Version="1.1.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+        <PackageReference Include="NUnit" Version="3.14.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Include every “*.Input.txt” under the Methods folder -->
+        <None Update="Methods\**\*.Input.txt">
+            <DependentUpon>Methods.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <!-- Include every “*.Expected.txt” under the Methods folder -->
+        <None Update="Methods\**\*.Expected.txt">
+            <DependentUpon>Methods.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Methods\MethodWithNestedTypes.Expected.txt">
+          <DependentUpon>Methods.cs</DependentUpon>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- All property tests input files -->
+        <None Update="Properties\**\*.Input.txt">
+            <DependentUpon>Properties.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <!-- All property tests expected files -->
+        <None Update="Properties\**\*.Expected.txt">
+            <DependentUpon>Properties.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Include all event test inputs -->
+        <None Update="Events\**\*.Input.txt">
+            <DependentUpon>Events.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+
+        <!-- Include all event test expected files -->
+        <None Update="Events\**\*.Expected.txt">
+            <DependentUpon>Events.cs</DependentUpon>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

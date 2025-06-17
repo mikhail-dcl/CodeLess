@@ -1,0 +1,10 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IMethodOutInRefAndCustomReturn
+    {
+        (string, int) Transform(in string s, ref int x, out bool success);
+    }
+}

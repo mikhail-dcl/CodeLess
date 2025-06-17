@@ -1,0 +1,14 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class ExplicitEvent : IExplicitEvent
+    {
+        public event EventHandler Custom
+        {
+            add { }
+            remove { }
+        }
+    }
+}

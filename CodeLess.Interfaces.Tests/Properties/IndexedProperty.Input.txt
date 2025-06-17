@@ -1,0 +1,15 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class IndexedProperty : IIndexedProperty
+    {
+        public int this[int index]
+                {
+                    get => 0;
+                    set
+                    {
+                    }
+                }
+    }
+}

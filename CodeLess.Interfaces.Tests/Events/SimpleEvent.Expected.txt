@@ -1,0 +1,10 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface ISimpleEvent
+    {
+        event Action OnSomething;
+    }
+}

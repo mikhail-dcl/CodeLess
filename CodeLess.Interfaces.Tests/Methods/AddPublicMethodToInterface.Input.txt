@@ -1,0 +1,11 @@
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class AddPublicMethodToInterface : IAddPublicMethodToInterface
+    {
+        public string Hello()
+        {
+            return string.Empty;
+        }
+    }
+}

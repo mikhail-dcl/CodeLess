@@ -1,0 +1,13 @@
+#nullable enable
+using System.Threading.Tasks;
+using static global::CodeLess.Interfaces.Tests.MethodWithNestedTypes;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IMethodWithNestedTypes
+    {
+        void GetEnum(out NestedEnum nestedEnum);
+        Task<NestedClass> GetNestedClassAsync();
+        NestedStruct GetNestedStruct(NestedClass nestedClass, int ttt, NestedClass nestedClass2);
+    }
+}

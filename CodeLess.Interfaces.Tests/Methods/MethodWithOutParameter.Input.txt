@@ -1,0 +1,12 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithOutParameter : IMethodWithOutParameter
+    {
+        public void GetValue(out int x)
+        {
+            x = 123;
+        }
+    }
+}

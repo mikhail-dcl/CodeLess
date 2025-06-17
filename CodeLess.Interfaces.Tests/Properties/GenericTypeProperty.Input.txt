@@ -1,0 +1,10 @@
+using System.Collections.Generic;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class GenericTypeProperty<T> : IGenericTypeProperty<T>
+    {
+        public List<T> Items { get; set; }
+    }
+}

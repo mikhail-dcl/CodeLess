@@ -1,0 +1,12 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithInParameter : IMethodWithInParameter
+    {
+        public void Process(in string s)
+        {
+            _ = s?.Trim();
+        }
+    }
+}

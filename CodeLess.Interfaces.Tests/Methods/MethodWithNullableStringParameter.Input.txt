@@ -1,0 +1,12 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class MethodWithNullableStringParameter : IMethodWithNullableStringParameter
+    {
+        public string? Format(string? input)
+        {
+            return input?.Trim();
+        }
+    }
+}

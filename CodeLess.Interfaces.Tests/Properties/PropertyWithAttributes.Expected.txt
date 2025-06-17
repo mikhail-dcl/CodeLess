@@ -1,0 +1,11 @@
+#nullable enable
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IPropertyWithAttributes
+    {
+        [Obsolete]
+        int Old { get; set; }
+    }
+}

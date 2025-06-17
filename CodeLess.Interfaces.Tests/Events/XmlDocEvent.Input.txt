@@ -1,0 +1,11 @@
+using System;
+
+namespace CodeLess.Interfaces.Tests
+{
+    /// <summary>Raised when data changes</summary>
+    [AutoInterface]
+    public class XmlDocEvent : IXmlDocEvent
+    {
+        public event EventHandler DataChanged;
+    }
+}

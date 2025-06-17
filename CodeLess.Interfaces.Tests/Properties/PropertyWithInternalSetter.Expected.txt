@@ -1,0 +1,8 @@
+#nullable enable
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IPropertyWithInternalSetter
+    {
+        string Data { get; }
+    }
+}

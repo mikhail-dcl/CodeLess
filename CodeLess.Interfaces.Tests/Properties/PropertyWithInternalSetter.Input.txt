@@ -1,0 +1,9 @@
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class PropertyWithInternalSetter : IPropertyWithInternalSetter
+    {
+        public string Data { get; internal set; }
+    }
+}
