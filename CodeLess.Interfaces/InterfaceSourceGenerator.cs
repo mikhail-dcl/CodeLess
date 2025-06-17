@@ -78,7 +78,8 @@ namespace CodeLess.Interfaces
                 var root = (CompilationUnitSyntax)tree.GetRoot();
                 var formatted = root.NormalizeWhitespace(indentation: "    ", eol: Environment.NewLine);
 
-                context.AddSource(builder.ClassName + ".g.cs", SourceText.From(formatted.ToFullString(), Encoding.UTF8));
+                // Strip the generic type parameters from the file name
+                context.AddSource(interfaceErrorTypeSymbol!.Name + ".g.cs", SourceText.From(formatted.ToFullString(), Encoding.UTF8));
             }
         }
     }

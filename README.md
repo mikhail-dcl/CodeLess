@@ -371,6 +371,6 @@ namespace CodeLess.Interfaces.Tests
 
 ### Roadmap/Currently not supported
 
-- [ ] Generic Types are not supported yet (Generic members are supported)
+- [x] Generic Types are not supported yet (Generic members are supported)
 - [ ] Ignore members of other interfaces
 - [ ] Internal accessors are not properly supported

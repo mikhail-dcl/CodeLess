@@ -27,7 +27,7 @@ namespace CodeLess.Interfaces
 
               {{NamespaceLeading}}
                 {{classTrivia}}
-                {{AccessModifier}} partial interface {{ClassName}}{{TypeGenericArguments}}
+                {{AccessModifier}} partial interface {{ClassName}}
                 {
                     {{events}}
 
