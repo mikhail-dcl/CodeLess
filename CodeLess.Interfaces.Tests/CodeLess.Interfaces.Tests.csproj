@@ -35,6 +35,14 @@
         <None Update="Methods\MethodWithNestedTypes.Expected.txt">
           <DependentUpon>Methods.cs</DependentUpon>
         </None>
+        <None Update="Combined\AllFunctionalities.Expected.txt">
+          <DependentUpon>AllFunctionalities.cs</DependentUpon>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Combined\AllFunctionalities.Input.txt">
+          <DependentUpon>AllFunctionalities.cs</DependentUpon>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

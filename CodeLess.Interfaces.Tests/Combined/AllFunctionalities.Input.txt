@@ -1,0 +1,44 @@
+using System;
+using System.Threading.Tasks;
+
+namespace CodeLess.Interfaces.Tests
+{
+    [AutoInterface]
+    public class AllFunctionalities : IAllFunctionalities
+    {
+        [Obsolete]
+        public event Action SimpleEvent;
+        public event EventHandler<int> GenericEvent;
+        public event Action InitEvent = () => { };
+        public event EventHandler ExplicitEvent
+        {
+            add { }
+            remove { }
+        }
+        [Obsolete("test")]
+        public event EventHandler AttributedEvent = delegate { };
+        /// <summary>Xml doc event</summary>
+        public event EventHandler XmlDocEvent;
+        
+        /// <summary>XML doc property</summary>
+        public string DocProp { get; set; }
+        public int ReadOnlyProp { get; }
+        public string WriteOnlyProp { set { } }
+        public string InitOnlyProp { get; init; }
+        public string ExprBodiedProp => "val";
+        public int this[int idx] { get => 0; set { } }
+
+        public void Method() { }
+        public Task<int> AsyncMethod() => Task.FromResult(1);
+        public TResult GenericMethod<T, TResult>(T input) => default!;
+        public void MethodWithParams(int a, string b, out bool ok, in double pi, ref long x, Action callback)
+        {
+            ok = true;
+        }
+        public (string, int) MethodOutInRefReturn(in string s, ref int count, out bool success)
+        {
+            success = true;
+            return (s, count);
+        }
+    }
+}

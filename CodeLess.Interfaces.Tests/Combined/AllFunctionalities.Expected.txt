@@ -1,0 +1,37 @@
+#nullable enable
+using System;
+using System.Threading.Tasks;
+
+namespace CodeLess.Interfaces.Tests
+{
+    public partial interface IAllFunctionalities
+    {
+        [Obsolete]
+        event Action SimpleEvent;
+        event EventHandler<int> GenericEvent;
+        event Action InitEvent;
+        event EventHandler ExplicitEvent;
+        [Obsolete("test")]
+        event EventHandler AttributedEvent;
+        /// <summary>Xml doc event</summary>
+        event EventHandler XmlDocEvent;
+        /// <summary>XML doc property</summary>
+        string DocProp { get; set; }
+
+        int ReadOnlyProp { get; }
+
+        string WriteOnlyProp { set; }
+
+        string InitOnlyProp { get; init; }
+
+        string ExprBodiedProp { get; }
+
+        int this[int idx] { get; set; }
+
+        void Method();
+        Task<int> AsyncMethod();
+        TResult GenericMethod<T, TResult>(T input);
+        void MethodWithParams(int a, string b, out bool ok, in double pi, ref long x, Action callback);
+        (string, int) MethodOutInRefReturn(in string s, ref int count, out bool success);
+    }
+}
