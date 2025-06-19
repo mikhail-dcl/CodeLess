@@ -26,7 +26,7 @@ namespace CodeLess.Singletons.Demo
         /// <summary>
         /// Comment 3
         /// </summary>
-        /// <param name="arg"></param>
+        /// <param name="arg">gggg</param>
         /// <returns></returns>
         internal string methodToExpose(string arg) =>
             arg;

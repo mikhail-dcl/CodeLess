@@ -119,11 +119,15 @@ namespace CodeLess.Singletons
                         }
                         else if (prop.GetMethod != null)
                         {
-                            staticAccessors.AppendLine($"public static {type} {staticName} => Instance.{memberName};");
+                            staticAccessors.AppendLine($$"""
+                                                         {{prop.InheritDoc()}}
+                                                         public static {type} {staticName} => Instance.{memberName};");
+                                                         """);
                         }
                         else if (prop.SetMethod != null)
                         {
                             staticAccessors.AppendLine($$"""
+                                                         {{prop.InheritDoc()}}
                                                          public static {{type}} {{staticName}} { set => Instance.{{memberName}} = value; }
                                                          """);
                         }
@@ -140,6 +144,7 @@ namespace CodeLess.Singletons
                         var args = string.Join(", ", method.Parameters.Select(p => $"{(p.RefKind != RefKind.None ? p.RefKind.ToString().ToLower() + " " : "")}{p.Name}"));
 
                         staticAccessors.AppendLine($"""
+                                                    {method.InheritDoc()}
                                                     public static {returnType} {staticName}({parameters}) => Instance.{memberName}({args});
                                                     """);
 
@@ -149,6 +154,7 @@ namespace CodeLess.Singletons
                         var evtType = evt.Type.ToDisplayString();
 
                         staticAccessors.AppendLine($$"""
+                                                     {{evt.InheritDoc()}}
                                                      public static event {{evtType}} {{staticName}}
                                                      {
                                                         add { Instance.{{memberName}} += value; }
