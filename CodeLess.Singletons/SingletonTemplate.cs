@@ -121,7 +121,7 @@ namespace CodeLess.Singletons
                         {
                             staticAccessors.AppendLine($$"""
                                                          {{prop.InheritDoc()}}
-                                                         public static {type} {staticName} => Instance.{memberName};");
+                                                         public static {{type}} {{staticName}} => Instance.{{memberName}};
                                                          """);
                         }
                         else if (prop.SetMethod != null)

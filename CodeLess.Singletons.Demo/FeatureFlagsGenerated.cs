@@ -9,6 +9,16 @@ namespace CodeLess.Singletons.Demo
         internal event Action<float> eventToExpose;
 
         /// <summary>
+        /// Getter only property comment
+        /// </summary>
+        internal string getterOnlyPropertyToExpose { get; }
+
+        /// <summary>
+        /// Getter only property comment 2
+        /// </summary>
+        internal string getterOnlyProperty2ToExpose => string.Empty;
+
+        /// <summary>
         /// Property comment
         /// </summary>
         internal string propertyToExpose { get; set; } = "default value";
