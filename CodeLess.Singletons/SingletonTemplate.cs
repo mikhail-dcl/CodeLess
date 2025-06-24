@@ -41,6 +41,20 @@ namespace CodeLess.Singletons
               }
               """;
 
+        private string BuildInitializeMethod() =>
+            $$"""
+               public static void Initialize({{ClassName}} instance)
+               {
+                  lock (syncObj)
+                  {
+                      if ({{ClassName}}.instance != null)
+                          throw new InvalidOperationException($"{nameof({{ClassName}})} is already initialized.");
+
+                      {{ClassName}}.instance = instance;
+                  }
+               }
+               """;
+
         private bool buildImplicitInstance;
 
         private readonly StringBuilder staticAccessors = new (500);
@@ -58,16 +72,7 @@ namespace CodeLess.Singletons
 
                      {{(buildImplicitInstance ? BuildImplicitInstance() : BuildExplicitInstance())}}
 
-                     public static void Initialize({{ClassName}} instance)
-                     {
-                        lock (syncObj)
-                        {
-                            if ({{ClassName}}.instance != null)
-                                throw new InvalidOperationException($"{nameof({{ClassName}})} is already initialized.");
-
-                            {{ClassName}}.instance = instance;
-                        }
-                     }
+                     {{(!buildImplicitInstance ? BuildInitializeMethod() : string.Empty)}}
 
                      public static void Reset()
                      {
