@@ -7,6 +7,16 @@ namespace CodeLess.Common
 {
     public static class GeneratorUtils
     {
+        private static readonly SymbolDisplayFormat FULLY_QUALIFIED_FORMAT = new (
+            globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Omitted,
+            typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+            genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+            memberOptions: SymbolDisplayMemberOptions.IncludeContainingType | SymbolDisplayMemberOptions.IncludeParameters,
+            miscellaneousOptions: SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers | SymbolDisplayMiscellaneousOptions.UseSpecialTypes);
+
+        public static string GetFullyQualifiedName(this ITypeSymbol typeSymbol) =>
+            typeSymbol.ToDisplayString(FULLY_QUALIFIED_FORMAT);
+
         public static bool IsPartial(this TypeDeclarationSyntax classDeclaration) =>
             classDeclaration.Modifiers.Any(SyntaxKind.PartialKeyword);
 

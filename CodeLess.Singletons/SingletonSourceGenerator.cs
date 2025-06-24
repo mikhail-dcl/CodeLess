@@ -74,6 +74,7 @@ namespace CodeLess.Singletons
                     template.SetNamespace(in typeInfo);
                     template.SetUsings(in typeInfo);
                     template.SetAccessModifier(in typeInfo);
+                    template.SetDisposeCall(in typeInfo);
 
                     if (behavior.HasFlag(SingletonGenerationBehavior.ALLOW_IMPLICIT_CONSTRUCTION))
                         template.SetImplicitInstance();

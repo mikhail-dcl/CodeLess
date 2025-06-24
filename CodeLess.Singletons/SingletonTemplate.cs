@@ -57,7 +57,15 @@ namespace CodeLess.Singletons
 
         private bool buildImplicitInstance;
 
+        private const string DISPOSE_CALL =
+            """
+            if (dispose)
+                instance?.Dispose();
+            """;
+
         private readonly StringBuilder staticAccessors = new (500);
+
+        private readonly StringBuilder disposeCall = new (DISPOSE_CALL.Length);
 
         internal override string BuildSource() =>
             $$"""
@@ -74,10 +82,11 @@ namespace CodeLess.Singletons
 
                      {{(!buildImplicitInstance ? BuildInitializeMethod() : string.Empty)}}
 
-                     public static void Reset()
+                     public static void Reset(bool dispose = true)
                      {
                         lock (syncObj)
                         {
+                            {{disposeCall}}
                             instance = null;
                         }
                      }
@@ -90,6 +99,15 @@ namespace CodeLess.Singletons
         internal void SetImplicitInstance()
         {
             buildImplicitInstance = true;
+        }
+
+        internal void SetDisposeCall(in GeneratorTypeInfo typeInfo)
+        {
+            disposeCall.Clear();
+
+            // Generate a dispose call only if the type implements IDisposable
+            if (typeInfo.Symbol.AllInterfaces.Any(static i => i.GetFullyQualifiedName() == Consts.DISPOSE_FULLY_QUALIFIED_NAME))
+                disposeCall.Append(DISPOSE_CALL);
         }
 
         internal void SetStaticAccessors(in GeneratorTypeInfo typeInfo)
@@ -177,6 +195,7 @@ namespace CodeLess.Singletons
             base.Clear();
             buildImplicitInstance = false;
             staticAccessors.Clear();
+            disposeCall.Clear();
         }
     }
 }

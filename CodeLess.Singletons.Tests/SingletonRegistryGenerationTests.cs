@@ -88,11 +88,15 @@ namespace CodeLess.Singletons.Tests
                            {
                                public class SingletonRegistry
                                {
-                                   public static void Reset()
+                                   /// <summary>
+                                   ///     Resets all singletons registered in the registry.
+                                   /// </summary>
+                                   /// <param name="dispose">If true, disposable singletons will be disposed before resetting.</param>
+                                   public static void Reset(bool dispose = true)
                                    {
-                                       SingletonType1.Reset();
-                                       SingletonType2.Reset();
-                                       FeatureFlagsGenerated.Reset();
+                                       SingletonType1.Reset(dispose);
+                                       SingletonType2.Reset(dispose);
+                                       FeatureFlagsGenerated.Reset(dispose);
                                    }
                                }
                            }

@@ -26,7 +26,11 @@ namespace CodeLess.Singletons
               {
                 public class SingletonRegistry
                 {
-                    public static void Reset()
+                    /// <summary>
+                    ///     Resets all singletons registered in the registry.
+                    /// </summary>
+                    /// <param name="dispose">If true, disposable singletons will be disposed before resetting.</param>
+                    public static void Reset(bool dispose = true)
                     {
                        {{resetMethods}}
                     }
@@ -61,7 +65,7 @@ namespace CodeLess.Singletons
         internal void AppendResetMethod(in ITypeSymbol typeInfo)
         {
             resetMethods.Append(typeInfo.Name);
-            resetMethods.AppendLine(".Reset();");
+            resetMethods.AppendLine(".Reset(dispose);");
         }
 
         internal void Clear()
