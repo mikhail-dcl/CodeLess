@@ -20,8 +20,10 @@ Annotating a class with  the `SingletonAttribute` will generate the code to make
       - It gives the full initialization control to the developer. The singleton then must be set explicitly by calling the generated `Initialize` method;
       - If the singleton accessed prematurely, it will throw an `ArgumentNullException` exception;
       - The singleton will require a default constructor to be present;
-   - If `ALLOW_IMPLICIT_CONSTRUCTION` is specified, the singleton will be created on demand when accessed for the first time;
+   - If `ALLOW_IMPLICIT_CONSTRUCTION` is specified, the singleton will be created on demand when accessed for the first time
+      - If the instance is created implicitly it can't be initialized explicitly, i.e. the `Initialize` method will not be generated;
    - For all singletons `Reset` method will be generated;
+      - The `Reset` method includes an optional parameter "dispose" ("true" by default) that allows the developer to dispose the singleton instance if it implements `IDisposable` before resetting it;
    - `SingletonRegistry` class will be generated to include calls to all referenced Singletons
        - It provides a way to reset all singletons at once without writing the code manually;
        - It is expected to be used when the game/application session is over: e.g. when the player disconnects, starts another session, logs out, etc.
@@ -86,7 +88,7 @@ namespace CodeLess.Tests.Module1
             }
         }
 
-        public static void Reset()
+        public static void Reset(bool dispose = true)
         {
             lock (syncObj)
             {
@@ -131,17 +133,7 @@ The generated code:
             }
         }
 
-        public static void Initialize(ChatCommandsBus instance)
-        {
-            lock (syncObj)
-            {
-                if (ChatCommandsBus.instance != null)
-                    throw new InvalidOperationException($"{nameof(ChatCommandsBus)} is already initialized.");
-                ChatCommandsBus.instance = instance;
-            }
-        }
-
-        public static void Reset()
+        public static void Reset(bool dispose = true)
         {
             lock (syncObj)
             {
@@ -180,17 +172,7 @@ The generated code:
             }
         }
 
-        public static void Initialize(PhysicsTickProvider instance)
-        {
-            lock (syncObj)
-            {
-                if (PhysicsTickProvider.instance != null)
-                    throw new InvalidOperationException($"{nameof(PhysicsTickProvider)} is already initialized.");
-                PhysicsTickProvider.instance = instance;
-            }
-        }
-
-        public static void Reset()
+        public static void Reset(bool dispose = true)
         {
             lock (syncObj)
             {
@@ -201,6 +183,61 @@ The generated code:
         /// <inheritdoc cref = "DCL.Time.PhysicsTickProvider.tick"/>
         public static int Tick { get => Instance.tick; set => Instance.tick = value; }
     }
+```
+
+**Disposable Singleton**
+
+```csharp
+[Singleton]
+public partial class DisposableSingleton : IDisposable
+{
+    public void Dispose()
+    {
+        // Dispose logic here
+    }
+}
+```
+
+The generated code:
+
+```csharp
+public partial class DisposableSingleton
+{
+    private static DisposableSingleton? instance = null;
+    private static readonly object syncObj = new();
+    public static DisposableSingleton Instance
+    {
+        get
+        {
+            lock (syncObj)
+            {
+                if (instance == null)
+                    throw new ArgumentNullException(nameof(instance), $"{nameof(DisposableSingleton)} is not initialized. Call {nameof(Initialize)} before accessing the instance");
+                return instance;
+            }
+        }
+    }
+
+    public static void Initialize(DisposableSingleton instance)
+    {
+        lock (syncObj)
+        {
+            if (DisposableSingleton.instance != null)
+                throw new InvalidOperationException($"{nameof(DisposableSingleton)} is already initialized.");
+            DisposableSingleton.instance = instance;
+        }
+    }
+
+    public static void Reset(bool dispose = true)
+    {
+        lock (syncObj)
+        {
+            if (dispose)
+                instance?.Dispose();
+            instance = null;
+        }
+    }
+}
 ```
 
 **Singleton Registry Auto-Generated**
@@ -215,11 +252,11 @@ The generated code:
        {
            public class SingletonRegistry
            {
-                public static void Reset()
+                public static void Reset(bool dispose = true)
                 {
-                    SingletonType1.Reset();
-                    SingletonType2.Reset();
-                    FeatureFlagsGenerated.Reset();
+                    SingletonType1.Reset(dispose);
+                    SingletonType2.Reset(dispose);
+                    FeatureFlagsGenerated.Reset(dispose);
                 }
            }
        }
